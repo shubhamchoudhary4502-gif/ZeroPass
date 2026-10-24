@@ -1,0 +1,21 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: zeropass-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zeropass
+      POSTGRES_PASSWORD: zeropass_secure_dev_password
+      POSTGRES_DB: zeropass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zeropass -d zeropass"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:

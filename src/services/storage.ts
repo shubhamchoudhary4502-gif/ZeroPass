@@ -1,0 +1,541 @@
+import { CredentialSchema, VerifiableCredential } from '../types/credential';
+import { VerificationPolicy, ProofSession, PresentationRecord } from '../types/proof';
+import { TrustedIssuer } from '../types/issuer';
+import { ApiKey, WebhookConfig, VerificationLog } from '../types/developer';
+import { UserProfile } from '../types/auth';
+
+// Initial Profiles for Quick Switching & Role Exploration
+export const SEED_PROFILES: Record<string, UserProfile> = {
+  issuer: {
+    id: 'user_issuer_01',
+    name: 'Helios Polytechnic Registry',
+    email: 'registrar@helios-polytechnic.edu.test',
+    role: 'issuer',
+    did: 'did:zeropass:testnet:helios:reg78912',
+    organization: 'Helios Polytechnic Institute (Fictional Test Anchor)',
+    createdAt: '2026-01-15T09:00:00Z',
+  },
+  holder: {
+    id: 'user_holder_01',
+    name: 'Elena Rostova',
+    email: 'elena.rostova@zeropass.local',
+    role: 'holder',
+    did: 'did:zeropass:testnet:holder:elena99321',
+    createdAt: '2026-02-10T14:30:00Z',
+  },
+  verifier: {
+    id: 'user_verifier_01',
+    name: 'Meridian Capital & Audit',
+    email: 'compliance@meridian-audit.corp.test',
+    role: 'verifier',
+    did: 'did:zeropass:testnet:verifier:meridian441',
+    organization: 'Meridian Capital Compliance (Sandbox Verifier)',
+    createdAt: '2026-03-01T11:00:00Z',
+  },
+  developer: {
+    id: 'user_dev_01',
+    name: 'Dev Portal Administrator',
+    email: 'devs@zeropass.network',
+    role: 'developer',
+    did: 'did:zeropass:testnet:dev:console001',
+    organization: 'ZeroPass Core Engineering',
+    createdAt: '2026-01-01T00:00:00Z',
+  },
+};
+
+// Seed Schemas
+export const SEED_SCHEMAS: CredentialSchema[] = [
+  {
+    id: 'schema_age_eligibility_v1',
+    name: 'Age & Adult Eligibility',
+    version: '1.2.0',
+    type: 'AgeEligibilityCredential',
+    description: 'Cryptographic proof of legal age threshold without revealing exact date of birth or government ID numbers.',
+    schemaUri: 'https://schema.zeropass.network/v1/AgeEligibilityCredential.json',
+    issuerDid: 'did:zeropass:testnet:civic:authority552',
+    createdAt: '2026-01-10T10:00:00Z',
+    attributes: [
+      { id: 'a1', name: 'Legal Full Name', key: 'fullName', type: 'string', required: true, description: 'Subject legal name' },
+      { id: 'a2', name: 'Age', key: 'age', type: 'number', required: true, description: 'Current age in completed years' },
+      { id: 'a3', name: 'Date of Birth', key: 'birthDate', type: 'date', required: true, description: 'Full date of birth' },
+      { id: 'a4', name: 'Jurisdiction Code', key: 'jurisdiction', type: 'string', required: true, description: 'ISO country/region code' },
+      { id: 'a5', name: 'National ID Last 4', key: 'nationalIdLast4', type: 'string', required: false, description: 'Partial identifier for audit' },
+    ],
+  },
+  {
+    id: 'schema_student_status_v2',
+    name: 'Higher Education Student Status',
+    version: '2.0.1',
+    type: 'StudentStatusCredential',
+    description: 'Verifies active university enrollment, degree program, and student discount eligibility.',
+    schemaUri: 'https://schema.zeropass.network/v2/StudentStatusCredential.json',
+    issuerDid: 'did:zeropass:testnet:helios:reg78912',
+    createdAt: '2026-01-20T12:00:00Z',
+    attributes: [
+      { id: 's1', name: 'Student Name', key: 'studentName', type: 'string', required: true, description: 'Enrolled student name' },
+      { id: 's2', name: 'Student ID Number', key: 'studentId', type: 'string', required: true, description: 'Institutional ID' },
+      { id: 's3', name: 'Enrollment Status', key: 'enrollmentStatus', type: 'string', required: true, description: 'ACTIVE | ON_LEAVE | GRADUATED' },
+      { id: 's4', name: 'Degree Level', key: 'degreeLevel', type: 'string', required: true, description: 'Undergraduate | Graduate | Doctoral' },
+      { id: 's5', name: 'Graduation Year', key: 'graduationYear', type: 'number', required: true, description: 'Anticipated completion year' },
+      { id: 's6', name: 'GPA', key: 'gpa', type: 'number', required: false, description: 'Cumulative grade point average' },
+    ],
+  },
+  {
+    id: 'schema_scholarship_v1',
+    name: 'Merit Scholarship Eligibility',
+    version: '1.0.0',
+    type: 'ScholarshipEligibilityCredential',
+    description: 'Proves scholarship award qualification, academic standing, and annual family income eligibility thresholds.',
+    schemaUri: 'https://schema.zeropass.network/v1/ScholarshipEligibilityCredential.json',
+    issuerDid: 'did:zeropass:testnet:helios:reg78912',
+    createdAt: '2026-02-01T15:30:00Z',
+    attributes: [
+      { id: 'sc1', name: 'Recipient Name', key: 'recipientName', type: 'string', required: true, description: 'Award recipient' },
+      { id: 'sc2', name: 'Award Category', key: 'awardCategory', type: 'string', required: true, description: 'STEM Excellence | First-Generation | Merit' },
+      { id: 'sc3', name: 'Annual Income', key: 'annualIncome', type: 'number', required: true, description: 'Household income in USD for needs-based tiering' },
+      { id: 'sc4', name: 'Minimum GPA Met', key: 'gpaThresholdMet', type: 'boolean', required: true, description: 'Satisfies GPA requirement' },
+      { id: 'sc5', name: 'Academic Year', key: 'academicYear', type: 'number', required: true, description: 'Funding academic year' },
+    ],
+  },
+  {
+    id: 'schema_employment_v1',
+    name: 'Enterprise Employment Verification',
+    version: '1.1.0',
+    type: 'EmploymentVerificationCredential',
+    description: 'Verifies active employment, title, and organization affiliation without disclosing salary or contract terms.',
+    schemaUri: 'https://schema.zeropass.network/v1/EmploymentVerificationCredential.json',
+    issuerDid: 'did:zeropass:testnet:corp:veritas118',
+    createdAt: '2026-02-15T09:20:00Z',
+    attributes: [
+      { id: 'e1', name: 'Employee Name', key: 'employeeName', type: 'string', required: true, description: 'Full legal name' },
+      { id: 'e2', name: 'Job Title', key: 'jobTitle', type: 'string', required: true, description: 'Current professional title' },
+      { id: 'e3', name: 'Department', key: 'department', type: 'string', required: true, description: 'Business unit' },
+      { id: 'e4', name: 'Employment Status', key: 'employmentStatus', type: 'string', required: true, description: 'ACTIVE | TERMINATED' },
+      { id: 'e5', name: 'Tenure Years', key: 'tenureYears', type: 'number', required: true, description: 'Completed years of service' },
+    ],
+  },
+];
+
+// Seed Credentials (Held by Elena Rostova or issued by Helios Polytechnic)
+export const SEED_CREDENTIALS: VerifiableCredential[] = [
+  {
+    id: 'urn:uuid:cred-student-8812',
+    context: ['https://www.w3.org/2018/credentials/v1', 'https://schema.zeropass.network/v2/context.jsonld'],
+    type: ['VerifiableCredential', 'StudentStatusCredential'],
+    schemaId: 'schema_student_status_v2',
+    schemaName: 'Higher Education Student Status',
+    issuer: {
+      id: 'did:zeropass:testnet:helios:reg78912',
+      name: 'Helios Polytechnic Institute (Fictional Test Anchor)',
+      isTrusted: true,
+    },
+    issuanceDate: '2026-01-22T08:00:00Z',
+    expirationDate: '2027-01-22T08:00:00Z',
+    status: 'signed',
+    credentialSubject: {
+      id: 'did:zeropass:testnet:holder:elena99321',
+      studentName: 'Elena Rostova',
+      studentId: 'HP-2024-9104',
+      enrollmentStatus: 'ACTIVE',
+      degreeLevel: 'Graduate',
+      graduationYear: 2027,
+      gpa: 3.92,
+    },
+    proof: {
+      type: 'ZeroPassSignature2026',
+      created: '2026-01-22T08:00:00Z',
+      verificationMethod: 'did:zeropass:testnet:helios:reg78912#keys-1',
+      proofPurpose: 'assertionMethod',
+      proofValue: '0x8f2c7104b2819e64e432a90fb78d10b7492c10a382cf8912048f0291e6b72a49',
+      merkleIndex: 42,
+    },
+    revocation: {
+      revoked: false,
+    },
+  },
+  {
+    id: 'urn:uuid:cred-age-4401',
+    context: ['https://www.w3.org/2018/credentials/v1', 'https://schema.zeropass.network/v1/context.jsonld'],
+    type: ['VerifiableCredential', 'AgeEligibilityCredential'],
+    schemaId: 'schema_age_eligibility_v1',
+    schemaName: 'Age & Adult Eligibility',
+    issuer: {
+      id: 'did:zeropass:testnet:civic:authority552',
+      name: 'CivicKey Digital Authority (Testnet Issuer)',
+      isTrusted: true,
+    },
+    issuanceDate: '2026-01-12T10:00:00Z',
+    expirationDate: '2029-01-12T10:00:00Z',
+    status: 'signed',
+    credentialSubject: {
+      id: 'did:zeropass:testnet:holder:elena99321',
+      fullName: 'Elena Rostova',
+      age: 24,
+      birthDate: '2002-04-18',
+      jurisdiction: 'US-CA',
+      nationalIdLast4: '7190',
+    },
+    proof: {
+      type: 'ZeroPassSignature2026',
+      created: '2026-01-12T10:00:00Z',
+      verificationMethod: 'did:zeropass:testnet:civic:authority552#keys-1',
+      proofPurpose: 'assertionMethod',
+      proofValue: '0x17c9b0e2714a8f9024cba8103e91d84f092318ab7023c91e84a20b72c91834de',
+      merkleIndex: 114,
+    },
+    revocation: {
+      revoked: false,
+    },
+  },
+  {
+    id: 'urn:uuid:cred-scholarship-3392',
+    context: ['https://www.w3.org/2018/credentials/v1', 'https://schema.zeropass.network/v1/context.jsonld'],
+    type: ['VerifiableCredential', 'ScholarshipEligibilityCredential'],
+    schemaId: 'schema_scholarship_v1',
+    schemaName: 'Merit Scholarship Eligibility',
+    issuer: {
+      id: 'did:zeropass:testnet:helios:reg78912',
+      name: 'Helios Polytechnic Institute (Fictional Test Anchor)',
+      isTrusted: true,
+    },
+    issuanceDate: '2026-02-05T14:00:00Z',
+    expirationDate: '2027-02-05T14:00:00Z',
+    status: 'signed',
+    credentialSubject: {
+      id: 'did:zeropass:testnet:holder:elena99321',
+      recipientName: 'Elena Rostova',
+      awardCategory: 'STEM Excellence',
+      annualIncome: 42000,
+      gpaThresholdMet: true,
+      academicYear: 2026,
+    },
+    proof: {
+      type: 'ZeroPassSignature2026',
+      created: '2026-02-05T14:00:00Z',
+      verificationMethod: 'did:zeropass:testnet:helios:reg78912#keys-1',
+      proofPurpose: 'assertionMethod',
+      proofValue: '0x9482bca819024f8d70142b918304910a28f73b192804c71829f034b71829048a',
+      merkleIndex: 88,
+    },
+    revocation: {
+      revoked: false,
+    },
+  },
+  {
+    id: 'urn:uuid:cred-draft-1102',
+    context: ['https://www.w3.org/2018/credentials/v1'],
+    type: ['VerifiableCredential', 'EmploymentVerificationCredential'],
+    schemaId: 'schema_employment_v1',
+    schemaName: 'Enterprise Employment Verification',
+    issuer: {
+      id: 'did:zeropass:testnet:helios:reg78912',
+      name: 'Helios Polytechnic Institute (Fictional Test Anchor)',
+      isTrusted: true,
+    },
+    issuanceDate: '2026-03-01T10:00:00Z',
+    expirationDate: '2027-03-01T10:00:00Z',
+    status: 'draft', // Clearly distinct unsigned draft!
+    credentialSubject: {
+      id: 'did:zeropass:testnet:holder:marcus2210',
+      employeeName: 'Marcus Vance',
+      jobTitle: 'Research Fellow',
+      department: 'Distributed Systems Lab',
+      employmentStatus: 'ACTIVE',
+      tenureYears: 2,
+    },
+  },
+  {
+    id: 'urn:uuid:cred-revoked-9901',
+    context: ['https://www.w3.org/2018/credentials/v1'],
+    type: ['VerifiableCredential', 'StudentStatusCredential'],
+    schemaId: 'schema_student_status_v2',
+    schemaName: 'Higher Education Student Status',
+    issuer: {
+      id: 'did:zeropass:testnet:helios:reg78912',
+      name: 'Helios Polytechnic Institute (Fictional Test Anchor)',
+      isTrusted: true,
+    },
+    issuanceDate: '2025-09-01T08:00:00Z',
+    expirationDate: '2027-09-01T08:00:00Z',
+    status: 'revoked',
+    credentialSubject: {
+      id: 'did:zeropass:testnet:holder:tarik501',
+      studentName: 'Tarik Al-Mansoor',
+      studentId: 'HP-2023-4100',
+      enrollmentStatus: 'DISENROLLED',
+      degreeLevel: 'Undergraduate',
+      graduationYear: 2027,
+    },
+    proof: {
+      type: 'ZeroPassSignature2026',
+      created: '2025-09-01T08:00:00Z',
+      verificationMethod: 'did:zeropass:testnet:helios:reg78912#keys-1',
+      proofPurpose: 'assertionMethod',
+      proofValue: '0x3344192804b719024f8d70142b918304910a28f73b192804c71829f034b71829',
+    },
+    revocation: {
+      revoked: true,
+      reason: 'Student withdrew from degree program on 2026-02-14',
+      revocationTimestamp: '2026-02-14T16:22:00Z',
+      registryIndex: 12,
+    },
+  },
+];
+
+// Seed Verification Policies
+export const SEED_POLICIES: VerificationPolicy[] = [
+  {
+    id: 'policy_adult_18_zk',
+    title: 'Adult Access Verification (18+)',
+    description: 'Requires zero-knowledge proof that subject age >= 18 and jurisdiction is verified, without revealing date of birth.',
+    credentialType: 'AgeEligibilityCredential',
+    schemaId: 'schema_age_eligibility_v1',
+    allowedIssuers: ['did:zeropass:testnet:civic:authority552'],
+    predicates: [
+      {
+        attributeKey: 'age',
+        attributeLabel: 'Age Requirement',
+        operator: 'gte',
+        value: 18,
+        isZeroKnowledge: true,
+      },
+    ],
+    disclosedClaims: [
+      {
+        attributeKey: 'jurisdiction',
+        attributeLabel: 'Jurisdiction Code',
+        required: true,
+        selectiveDisclosureAllowed: true,
+      },
+    ],
+    createdAt: '2026-02-01T10:00:00Z',
+  },
+  {
+    id: 'policy_active_student_discount',
+    title: 'Student Discount & Transit Card',
+    description: 'Verifies active enrollment status and graduation year without disclosing student ID, GPA, or full transcript.',
+    credentialType: 'StudentStatusCredential',
+    schemaId: 'schema_student_status_v2',
+    predicates: [
+      {
+        attributeKey: 'enrollmentStatus',
+        attributeLabel: 'Enrollment Status',
+        operator: 'eq',
+        value: 'ACTIVE',
+        isZeroKnowledge: false,
+      },
+      {
+        attributeKey: 'graduationYear',
+        attributeLabel: 'Active Student Year',
+        operator: 'gte',
+        value: 2026,
+        isZeroKnowledge: true,
+      },
+    ],
+    disclosedClaims: [
+      {
+        attributeKey: 'studentName',
+        attributeLabel: 'Student Name',
+        required: true,
+        selectiveDisclosureAllowed: false,
+      },
+      {
+        attributeKey: 'degreeLevel',
+        attributeLabel: 'Degree Level',
+        required: false,
+        selectiveDisclosureAllowed: true,
+      },
+    ],
+    createdAt: '2026-02-10T11:30:00Z',
+  },
+  {
+    id: 'policy_grant_income_threshold',
+    title: 'Low-Income Educational Grant Policy',
+    description: 'Proves applicant household income < $60,000 via Zero-Knowledge inequality check without exposing exact salary.',
+    credentialType: 'ScholarshipEligibilityCredential',
+    schemaId: 'schema_scholarship_v1',
+    predicates: [
+      {
+        attributeKey: 'annualIncome',
+        attributeLabel: 'Income Cap Threshold',
+        operator: 'lt',
+        value: 60000,
+        isZeroKnowledge: true,
+      },
+      {
+        attributeKey: 'gpaThresholdMet',
+        attributeLabel: 'Academic Threshold',
+        operator: 'eq',
+        value: true,
+        isZeroKnowledge: false,
+      },
+    ],
+    disclosedClaims: [
+      {
+        attributeKey: 'awardCategory',
+        attributeLabel: 'Award Category',
+        required: true,
+        selectiveDisclosureAllowed: true,
+      },
+    ],
+    createdAt: '2026-02-20T14:15:00Z',
+  },
+];
+
+// Seed Trusted Issuers Directory
+export const SEED_TRUSTED_ISSUERS: TrustedIssuer[] = [
+  {
+    id: 'iss_helios_polytechnic',
+    name: 'Helios Polytechnic Institute',
+    did: 'did:zeropass:testnet:helios:reg78912',
+    category: 'Education',
+    trustStatus: 'ACCREDITED_INSTITUTION',
+    verificationMethod: 'On-chain State Contract',
+    supportedCredentialTypes: ['StudentStatusCredential', 'ScholarshipEligibilityCredential', 'DegreeCredential'],
+    website: 'https://helios-polytechnic.edu.test',
+    description: 'Fictional accredited technical university participating in ZeroPass sandbox academic credentialing.',
+    establishedDate: '2024-06-01',
+    publicKeyFingerprint: '0x9924...b819 (Ed25519)',
+    activeCredentialsIssued: 3420,
+  },
+  {
+    id: 'iss_civickey_digital',
+    name: 'CivicKey Digital Authority',
+    did: 'did:zeropass:testnet:civic:authority552',
+    category: 'Government & Civic',
+    trustStatus: 'VERIFIED_TRUST_ANCHOR',
+    verificationMethod: 'X.509 PKI Trust Anchor',
+    supportedCredentialTypes: ['AgeEligibilityCredential', 'CivicResidencyCredential', 'NationalIDCredential'],
+    website: 'https://civickey-sandbox.org.test',
+    description: 'Fictional civic testnet identity issuer testing privacy-preserving age and residency verification.',
+    establishedDate: '2023-11-15',
+    publicKeyFingerprint: '0x17c9...84de (BLS12-381)',
+    activeCredentialsIssued: 14890,
+  },
+  {
+    id: 'iss_veritas_corp',
+    name: 'Veritas Enterprise Employment Registry',
+    did: 'did:zeropass:testnet:corp:veritas118',
+    category: 'Financial & Corporate',
+    trustStatus: 'REGISTERED_ENTERPRISE',
+    verificationMethod: 'DID Document Registry',
+    supportedCredentialTypes: ['EmploymentVerificationCredential', 'CorporateOfficerCredential'],
+    website: 'https://veritas-corp.io.test',
+    description: 'Fictional payroll and enterprise federation anchor providing employment status attestations.',
+    establishedDate: '2025-01-20',
+    publicKeyFingerprint: '0x4f88...312a (Secp256k1)',
+    activeCredentialsIssued: 890,
+  },
+  {
+    id: 'iss_nordic_health',
+    name: 'Aegis Medical Verification Consortium',
+    did: 'did:zeropass:testnet:med:aegis901',
+    category: 'Healthcare',
+    trustStatus: 'COMMUNITY_VERIFIED',
+    verificationMethod: 'On-chain State Contract',
+    supportedCredentialTypes: ['PractitionerLicenseCredential', 'ImmunizationRecordCredential'],
+    website: 'https://aegis-med.org.test',
+    description: 'Fictional healthcare consortium evaluating verifiable medical licensing protocols.',
+    establishedDate: '2025-04-10',
+    publicKeyFingerprint: '0x02bb...94cd (Ed25519)',
+    activeCredentialsIssued: 520,
+  },
+];
+
+// Seed Presentation Records (Holder Wallet History)
+export const SEED_PRESENTATIONS: PresentationRecord[] = [
+  {
+    id: 'pres_001',
+    timestamp: '2026-03-02T16:20:00Z',
+    verifierName: 'City Transit Authority',
+    verifierDid: 'did:zeropass:testnet:verifier:transit99',
+    credentialTitle: 'Higher Education Student Status',
+    claimsDisclosed: ['studentName', 'degreeLevel'],
+    predicatesProved: ['enrollmentStatus == ACTIVE', 'graduationYear >= 2026 (ZK)'],
+    status: 'approved',
+  },
+  {
+    id: 'pres_002',
+    timestamp: '2026-02-28T19:45:00Z',
+    verifierName: 'Club Nebula Hospitality Gate',
+    verifierDid: 'did:zeropass:testnet:verifier:nebula81',
+    credentialTitle: 'Age & Adult Eligibility',
+    claimsDisclosed: ['jurisdiction'],
+    predicatesProved: ['age >= 18 (ZK - Zero Knowledge)'],
+    status: 'approved',
+  },
+];
+
+// Seed API Keys
+export const SEED_API_KEYS: ApiKey[] = [
+  {
+    id: 'key_live_01',
+    name: 'Production Verifier Microservice',
+    keyPrefix: 'zp_live_948a',
+    maskedKey: 'zp_live_948a••••••••••••••••3bf1',
+    scopes: ['verification:verify', 'credentials:read'],
+    createdAt: '2026-01-20T10:00:00Z',
+    lastUsedAt: '2026-03-03T18:22:00Z',
+    status: 'active',
+  },
+  {
+    id: 'key_live_02',
+    name: 'Issuer CI/CD Automation',
+    keyPrefix: 'zp_live_21bc',
+    maskedKey: 'zp_live_21bc••••••••••••••••8a90',
+    scopes: ['credentials:issue', 'credentials:revoke', 'schemas:write'],
+    createdAt: '2026-02-01T14:30:00Z',
+    lastUsedAt: '2026-03-02T09:15:00Z',
+    status: 'active',
+  },
+];
+
+// Seed Webhook Configs
+export const SEED_WEBHOOKS: WebhookConfig[] = [
+  {
+    id: 'wh_01',
+    url: 'https://api.meridian-audit.corp.test/webhooks/zeropass',
+    description: 'Audit service notifications for completed proof presentations',
+    events: ['proof.verified', 'proof.failed'],
+    secretToken: 'whsec_8849b2c890124f8d70142b91830491',
+    isActive: true,
+    createdAt: '2026-02-05T12:00:00Z',
+    lastDeliveryStatus: 'success',
+    lastDeliveryAt: '2026-03-03T18:22:04Z',
+  },
+];
+
+// Seed Verification Logs
+export const SEED_LOGS: VerificationLog[] = [
+  {
+    id: 'log_01',
+    timestamp: '2026-03-03T18:22:04Z',
+    requestId: 'req_v8892_10',
+    verifierName: 'Meridian Capital Compliance',
+    credentialType: 'AgeEligibilityCredential',
+    result: 'SUCCESS',
+    latencyMs: 142,
+    ipAddress: '198.51.100.42',
+  },
+  {
+    id: 'log_02',
+    timestamp: '2026-03-03T17:15:10Z',
+    requestId: 'req_v8891_09',
+    verifierName: 'City Transit Authority',
+    credentialType: 'StudentStatusCredential',
+    result: 'SUCCESS',
+    latencyMs: 98,
+    ipAddress: '203.0.113.19',
+  },
+  {
+    id: 'log_03',
+    timestamp: '2026-03-03T15:40:22Z',
+    requestId: 'req_v8890_08',
+    verifierName: 'Meridian Capital Compliance',
+    credentialType: 'StudentStatusCredential',
+    result: 'FAILED',
+    failureReason: 'CREDENTIAL_REVOKED (Registry accumulator index #12)',
+    latencyMs: 110,
+    ipAddress: '198.51.100.42',
+  },
+];

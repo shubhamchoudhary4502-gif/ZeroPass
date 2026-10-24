@@ -1,0 +1,159 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         String   @default("HOLDER") // ISSUER, HOLDER, VERIFIER, ADMIN
+  did          String   @unique
+  organization String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  credentials   Credential[]
+  presentations PresentationRecord[]
+}
+
+model Issuer {
+  id                      String   @id @default(uuid())
+  name                    String
+  did                     String   @unique
+  category                String   // Education, Government & Civic, Financial & Corporate, Healthcare
+  trustStatus             String   // VERIFIED_TRUST_ANCHOR, ACCREDITED_INSTITUTION, REGISTERED_ENTERPRISE, COMMUNITY_VERIFIED
+  verificationMethod      String   // On-chain State Contract, DID Document Registry, X.509 PKI Trust Anchor
+  supportedCredentialTypes String  // JSON array string
+  website                 String
+  description             String
+  publicKeyJwk            String   // Stored as JSON string
+  activeCredentialsIssued Int      @default(0)
+  createdAt               DateTime @default(now())
+  updatedAt               DateTime @updatedAt
+}
+
+model CredentialSchema {
+  id          String   @id @default(uuid())
+  name        String
+  version     String   @default("1.0.0")
+  type        String   @unique
+  description String
+  schemaUri   String
+  attributes  String   // JSON array of SchemaAttribute objects
+  issuerDid   String
+  createdAt   DateTime @default(now())
+
+  credentials Credential[]
+}
+
+model Credential {
+  id               String            @id @default(uuid())
+  schemaId         String
+  schemaName       String
+  type             String            // Primary credential type, e.g. AgeEligibilityCredential
+  issuerDid        String
+  issuerName       String
+  holderDid        String
+  issuanceDate     DateTime          @default(now())
+  expirationDate   DateTime
+  status           String            @default("SIGNED") // SIGNED, DRAFT, REVOKED, EXPIRED
+  claims           String            // JSON stringified subject claims
+  jwtVc            String?           // W3C compliant signed JWT Verifiable Credential string
+  proofType        String            @default("Ed25519Signature2020")
+  proofValue       String
+  merkleIndex      Int?
+  revoked          Boolean           @default(false)
+  revokedAt        DateTime?
+  revocationReason String?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  schema           CredentialSchema  @relation(fields: [schemaId], references: [id])
+  user             User?             @relation(fields: [holderDid], references: [did])
+}
+
+model VerificationPolicy {
+  id              String   @id @default(uuid())
+  title           String
+  description     String
+  credentialType  String
+  schemaId        String
+  allowedIssuers  String?  // JSON array of trusted issuer DIDs (optional)
+  predicates      String   // JSON array of ProofPredicate objects
+  disclosedClaims String   // JSON array of RequestedClaim objects
+  verifierDid     String
+  createdAt       DateTime @default(now())
+
+  sessions        VerificationSession[]
+}
+
+model VerificationSession {
+  id           String              @id @default(uuid())
+  policyId     String
+  status       String              @default("PENDING") // PENDING, RECEIVED, VERIFIED, FAILED, EXPIRED
+  verifierDid  String
+  verifierName String
+  qrPayload    String
+  expiresAt    DateTime
+  result       String?             // JSON stringified VerificationResult
+  createdAt    DateTime            @default(now())
+
+  policy       VerificationPolicy  @relation(fields: [policyId], references: [id])
+}
+
+model PresentationRecord {
+  id                 String   @id @default(uuid())
+  timestamp          DateTime @default(now())
+  verifierName       String
+  verifierDid        String
+  holderDid          String
+  credentialTitle    String
+  claimsDisclosed    String   // JSON array string
+  predicatesProved   String   // JSON array string
+  status             String   @default("APPROVED") // APPROVED, REJECTED
+  presentationToken  String?  // Signed VP JWT token
+  createdAt          DateTime @default(now())
+
+  user               User?    @relation(fields: [holderDid], references: [did])
+}
+
+model ApiKey {
+  id         String    @id @default(uuid())
+  name       String
+  keyPrefix  String
+  keyHash    String    @unique
+  scopes     String    // JSON array of scope strings
+  status     String    @default("ACTIVE") // ACTIVE, REVOKED
+  lastUsedAt DateTime?
+  createdAt  DateTime  @default(now())
+}
+
+model Webhook {
+  id                 String    @id @default(uuid())
+  url                String
+  description        String
+  events             String    // JSON array of event names
+  secretToken        String
+  isActive           Boolean   @default(true)
+  lastDeliveryStatus String?
+  lastDeliveryAt     DateTime?
+  createdAt          DateTime  @default(now())
+}
+
+model VerificationLog {
+  id             String   @id @default(uuid())
+  timestamp      DateTime @default(now())
+  requestId      String
+  verifierName   String
+  credentialType String
+  result         String   // SUCCESS, FAILED
+  failureReason  String?
+  latencyMs      Int
+  ipAddress      String
+}

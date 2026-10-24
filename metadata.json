@@ -1,0 +1,6 @@
+{
+  "name": "ZeroPass - Verifiable Credential Platform",
+  "description": "Enterprise-grade decentralized identity and zero-knowledge verifiable credentials platform for issuers, holders, and verifiers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

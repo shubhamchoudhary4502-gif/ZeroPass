@@ -1,0 +1,987 @@
+{
+  "users": [
+    {
+      "id": "usr_issuer_01",
+      "email": "registrar@helios-polytechnic.edu.test",
+      "passwordHash": "$2b$10$evMfrH3hTZCFuH6hG/lICu0pkc2m4qyZEtJoCSR0hH9rkkNNozfE6",
+      "name": "Helios Polytechnic Registry",
+      "role": "ISSUER",
+      "did": "did:zeropass:testnet:helios:reg78912",
+      "organization": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "createdAt": "2026-01-15T09:00:00Z",
+      "updatedAt": "2026-01-15T09:00:00Z"
+    },
+    {
+      "id": "usr_holder_01",
+      "email": "elena.rostova@zeropass.local",
+      "passwordHash": "$2b$10$evMfrH3hTZCFuH6hG/lICu0pkc2m4qyZEtJoCSR0hH9rkkNNozfE6",
+      "name": "Elena Rostova",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:elena99321",
+      "createdAt": "2026-02-10T14:30:00Z",
+      "updatedAt": "2026-02-10T14:30:00Z"
+    },
+    {
+      "id": "usr_verifier_01",
+      "email": "compliance@meridian-audit.corp.test",
+      "passwordHash": "$2b$10$evMfrH3hTZCFuH6hG/lICu0pkc2m4qyZEtJoCSR0hH9rkkNNozfE6",
+      "name": "Meridian Capital Compliance",
+      "role": "VERIFIER",
+      "did": "did:zeropass:testnet:verifier:meridian441",
+      "organization": "Meridian Capital Compliance (Sandbox Verifier)",
+      "createdAt": "2026-03-01T11:00:00Z",
+      "updatedAt": "2026-03-01T11:00:00Z"
+    },
+    {
+      "id": "usr_admin_01",
+      "email": "admin@zeropass.network",
+      "passwordHash": "$2b$10$evMfrH3hTZCFuH6hG/lICu0pkc2m4qyZEtJoCSR0hH9rkkNNozfE6",
+      "name": "Platform Administrator",
+      "role": "ADMIN",
+      "did": "did:zeropass:testnet:admin:root001",
+      "organization": "ZeroPass Core Protocol Authority",
+      "createdAt": "2026-01-01T00:00:00Z",
+      "updatedAt": "2026-01-01T00:00:00Z"
+    },
+    {
+      "id": "usr_mvmv3iis_os2y",
+      "email": "tester-1792874350314@example.com",
+      "passwordHash": "$2b$10$U3aH.pTS4EwmogyODyyVuOIu9IDl1vcyKUu8nlwkv1GX3ido/5.pa",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:6d5eb61b52d71a09",
+      "createdAt": "2026-10-24T20:39:10.468Z",
+      "updatedAt": "2026-10-24T20:39:10.468Z"
+    },
+    {
+      "id": "usr_mvmv3irl_siit",
+      "email": "alice.holder@zeropass.id",
+      "passwordHash": "$2b$10$Pzzgkp3k0lGypW1YzLqcguA4F5l.oPCAsfh.juA4aY.vDP8l6HWfm",
+      "name": "Alice Duplicate",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:1b29ff9dcea0ba44",
+      "createdAt": "2026-10-24T20:39:10.785Z",
+      "updatedAt": "2026-10-24T20:39:10.785Z"
+    },
+    {
+      "id": "usr_mvmv600v_gtnv",
+      "email": "tester-1792874466291@example.com",
+      "passwordHash": "$2b$10$pTzsWPIVpTmcv3eKFoKXxuDFRm51Kjg2j/WQcR9MhGoCBrtbAL3ia",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:f9a5dc42b46d9556",
+      "createdAt": "2026-10-24T20:41:06.463Z",
+      "updatedAt": "2026-10-24T20:41:06.463Z"
+    },
+    {
+      "id": "usr_mvmv60np_9b3c",
+      "email": "private-holder-1792874467156@test.local",
+      "passwordHash": "$2b$10$ablLeNZYdBc0C5emNmjvpukCswPl0l/.ksxpcr9gk6RcopqPua4oq",
+      "name": "Separate Holder",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:a01b18be189c2a51",
+      "createdAt": "2026-10-24T20:41:07.285Z",
+      "updatedAt": "2026-10-24T20:41:07.285Z"
+    },
+    {
+      "id": "usr_mvmv6wxw_9bfm",
+      "email": "tester-1792874508959@example.com",
+      "passwordHash": "$2b$10$/gMK8U.wYsZboE.KWBEDjuz8U6MuobkhLVF8UzJU7pOL4kp1qVXeG",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:a11f8fe000be56d1",
+      "createdAt": "2026-10-24T20:41:49.124Z",
+      "updatedAt": "2026-10-24T20:41:49.124Z"
+    },
+    {
+      "id": "usr_mvmv6xl1_9cuo",
+      "email": "private-holder-1792874509836@test.local",
+      "passwordHash": "$2b$10$0D890kHvXfyu6YBD8ydTne9mC.pzSKiha0aAlRamN6A932MPGo.wi",
+      "name": "Separate Holder",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:b2fb34f7dd8884c3",
+      "createdAt": "2026-10-24T20:41:49.957Z",
+      "updatedAt": "2026-10-24T20:41:49.957Z"
+    },
+    {
+      "id": "usr_mvmv7j4o_32ip",
+      "email": "tester-1792874537713@example.com",
+      "passwordHash": "$2b$10$b9BQLZwHfpqKJjOgkyndt.zYqSWqAFTb/q1nOnu7GNsB6PmRVKxJS",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:098425f534d4b804",
+      "createdAt": "2026-10-24T20:42:17.880Z",
+      "updatedAt": "2026-10-24T20:42:17.880Z"
+    },
+    {
+      "id": "usr_mvmv7jrl_3k81",
+      "email": "private-holder-1792874538577@test.local",
+      "passwordHash": "$2b$10$D63BGlvGsLRLlnqHfa6iKOSNY78/2/j9R8BtISsc8.QKfDn6g65EC",
+      "name": "Separate Holder",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:80489b2681b73b54",
+      "createdAt": "2026-10-24T20:42:18.705Z",
+      "updatedAt": "2026-10-24T20:42:18.705Z"
+    },
+    {
+      "id": "usr_mvmv8qxo_1cv2",
+      "email": "tester-1792874594487@example.com",
+      "passwordHash": "$2b$10$/Hk/1RYzeUW3SparNN2uuews.xqrdx.K94fz/MXRWWykWBwKPIcC2",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:e88584343b75284e",
+      "createdAt": "2026-10-24T20:43:14.652Z",
+      "updatedAt": "2026-10-24T20:43:14.652Z"
+    },
+    {
+      "id": "usr_mvmv8rkh_36uk",
+      "email": "private-holder-1792874595350@test.local",
+      "passwordHash": "$2b$10$MeAqfEcyexEWBoy4F0PriuVqQCTGkwiuDhC0mKG7xiqhKw4eFMnF2",
+      "name": "Separate Holder",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:6d29624266bbe134",
+      "createdAt": "2026-10-24T20:43:15.473Z",
+      "updatedAt": "2026-10-24T20:43:15.474Z"
+    },
+    {
+      "id": "usr_mvmvdc4t_tbe3",
+      "email": "tester-1792874808586@example.com",
+      "passwordHash": "$2b$10$G0bF7salNEBDHkZhyx/sw.Y72XP1nNM0ai/9VD1bYaIEvtZGKvi9e",
+      "name": "Integration Tester",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:d1c63f128df481e0",
+      "createdAt": "2026-10-24T20:46:48.749Z",
+      "updatedAt": "2026-10-24T20:46:48.749Z"
+    },
+    {
+      "id": "usr_mvmvdcrq_sf6l",
+      "email": "private-holder-1792874809454@test.local",
+      "passwordHash": "$2b$10$N6oVJhkMKNHAM5ESYe6/LudXhYnso0s4LnAiWfZQhUSrp0k1UhLGu",
+      "name": "Separate Holder",
+      "role": "HOLDER",
+      "did": "did:zeropass:testnet:holder:c683660bf7753ea4",
+      "createdAt": "2026-10-24T20:46:49.574Z",
+      "updatedAt": "2026-10-24T20:46:49.574Z"
+    }
+  ],
+  "issuers": [
+    {
+      "id": "iss_helios",
+      "name": "Helios Polytechnic Institute",
+      "did": "did:zeropass:testnet:helios:reg78912",
+      "category": "Education",
+      "trustStatus": "ACCREDITED_INSTITUTION",
+      "verificationMethod": "On-chain State Contract",
+      "supportedCredentialTypes": [
+        "StudentStatusCredential",
+        "ScholarshipEligibilityCredential"
+      ],
+      "website": "https://helios-polytechnic.edu.test",
+      "description": "Fictional accredited technical university participating in ZeroPass sandbox credentialing.",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "3a829f01bc74e92a838df20b48a129048a120489"
+      },
+      "activeCredentialsIssued": 3425,
+      "createdAt": "2026-01-10T10:00:00Z",
+      "updatedAt": "2026-01-10T10:00:00Z"
+    },
+    {
+      "id": "iss_civickey",
+      "name": "CivicKey Digital Authority",
+      "did": "did:zeropass:testnet:civic:authority552",
+      "category": "Government & Civic",
+      "trustStatus": "VERIFIED_TRUST_ANCHOR",
+      "verificationMethod": "X.509 PKI Trust Anchor",
+      "supportedCredentialTypes": [
+        "AgeEligibilityCredential"
+      ],
+      "website": "https://civickey-sandbox.org.test",
+      "description": "Fictional civic testnet identity issuer testing privacy-preserving age verification.",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "17c9b0e2714a8f9024cba8103e91d84f092318ab"
+      },
+      "activeCredentialsIssued": 14890,
+      "createdAt": "2026-01-05T12:00:00Z",
+      "updatedAt": "2026-01-05T12:00:00Z"
+    }
+  ],
+  "schemas": [
+    {
+      "id": "schema_age_eligibility_v1",
+      "name": "Age & Adult Eligibility",
+      "version": "1.2.0",
+      "type": "AgeEligibilityCredential",
+      "description": "Cryptographic proof of legal age threshold without revealing date of birth.",
+      "schemaUri": "https://schema.zeropass.network/v1/AgeEligibilityCredential.json",
+      "issuerDid": "did:zeropass:testnet:civic:authority552",
+      "createdAt": "2026-01-10T10:00:00Z",
+      "attributes": [
+        {
+          "id": "a1",
+          "name": "Legal Full Name",
+          "key": "fullName",
+          "type": "string",
+          "required": true,
+          "description": "Subject legal name"
+        },
+        {
+          "id": "a2",
+          "name": "Age",
+          "key": "age",
+          "type": "number",
+          "required": true,
+          "description": "Current age in completed years"
+        },
+        {
+          "id": "a3",
+          "name": "Date of Birth",
+          "key": "birthDate",
+          "type": "date",
+          "required": true,
+          "description": "Full date of birth"
+        },
+        {
+          "id": "a4",
+          "name": "Jurisdiction Code",
+          "key": "jurisdiction",
+          "type": "string",
+          "required": true,
+          "description": "ISO country/region code"
+        }
+      ]
+    },
+    {
+      "id": "schema_student_status_v2",
+      "name": "Higher Education Student Status",
+      "version": "2.0.1",
+      "type": "StudentStatusCredential",
+      "description": "Verifies active university enrollment and student discount eligibility.",
+      "schemaUri": "https://schema.zeropass.network/v2/StudentStatusCredential.json",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "createdAt": "2026-01-20T12:00:00Z",
+      "attributes": [
+        {
+          "id": "s1",
+          "name": "Student Name",
+          "key": "studentName",
+          "type": "string",
+          "required": true,
+          "description": "Enrolled student name"
+        },
+        {
+          "id": "s2",
+          "name": "Student ID Number",
+          "key": "studentId",
+          "type": "string",
+          "required": true,
+          "description": "Institutional ID"
+        },
+        {
+          "id": "s3",
+          "name": "Enrollment Status",
+          "key": "enrollmentStatus",
+          "type": "string",
+          "required": true,
+          "description": "ACTIVE | GRADUATED"
+        },
+        {
+          "id": "s4",
+          "name": "Degree Level",
+          "key": "degreeLevel",
+          "type": "string",
+          "required": true,
+          "description": "Undergraduate | Graduate"
+        },
+        {
+          "id": "s5",
+          "name": "Graduation Year",
+          "key": "graduationYear",
+          "type": "number",
+          "required": true,
+          "description": "Anticipated completion year"
+        }
+      ]
+    },
+    {
+      "id": "schema_scholarship_v1",
+      "name": "Merit Scholarship Eligibility",
+      "version": "1.0.0",
+      "type": "ScholarshipEligibilityCredential",
+      "description": "Proves scholarship award qualification and family income eligibility thresholds.",
+      "schemaUri": "https://schema.zeropass.network/v1/ScholarshipEligibilityCredential.json",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "createdAt": "2026-02-01T15:30:00Z",
+      "attributes": [
+        {
+          "id": "sc1",
+          "name": "Recipient Name",
+          "key": "recipientName",
+          "type": "string",
+          "required": true,
+          "description": "Award recipient"
+        },
+        {
+          "id": "sc2",
+          "name": "Award Category",
+          "key": "awardCategory",
+          "type": "string",
+          "required": true,
+          "description": "STEM Excellence | Merit"
+        },
+        {
+          "id": "sc3",
+          "name": "Annual Income",
+          "key": "annualIncome",
+          "type": "number",
+          "required": true,
+          "description": "Household income in USD"
+        },
+        {
+          "id": "sc4",
+          "name": "Minimum GPA Met",
+          "key": "gpaThresholdMet",
+          "type": "boolean",
+          "required": true,
+          "description": "Satisfies GPA requirement"
+        }
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "id": "urn:uuid:a863e222-8b3b-4df9-bd84-2a765d18588d",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-10-24T20:46:49.447Z",
+      "expirationDate": "2027-01-22T20:46:49.447Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOmE4NjNlMjIyLThiM2ItNGRmOS1iZDg0LTJhNzY1ZDE4NTg4ZCIsIm5iZiI6MTc5Mjg3NDgwOSwiZXhwIjoxODAwNjUwODA5LCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOmE4NjNlMjIyLThiM2ItNGRmOS1iZDg0LTJhNzY1ZDE4NTg4ZCIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDo0Njo0OS40NDdaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTIyVDIwOjQ2OjQ5LjQ0N1oiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ.8vx7p4cEsXOwXp-OvJ5xDQCXeBLQ4A9GxWQeuF-CcfoQWjLoWnPoOhap__KHM1aZzs-kwfa7bF6NUbxlGRbIAQ",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0xf2fc7ba78704b173b05e9f8ebc9e710d00977812d0e00f46c5641eb85f8271fa105a32e85a73e83a16a9fff287335699cecfa4c1f6bb6c5e8d51bc651916c801",
+      "merkleIndex": 318,
+      "revoked": false,
+      "createdAt": "2026-10-24T20:46:49.447Z",
+      "updatedAt": "2026-10-24T20:46:49.447Z"
+    },
+    {
+      "id": "urn:uuid:2077ac43-4d4d-4370-b20d-0e0513be3550",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-10-24T20:43:15.343Z",
+      "expirationDate": "2027-01-22T20:43:15.343Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOjIwNzdhYzQzLTRkNGQtNDM3MC1iMjBkLTBlMDUxM2JlMzU1MCIsIm5iZiI6MTc5Mjg3NDU5NSwiZXhwIjoxODAwNjUwNTk1LCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOjIwNzdhYzQzLTRkNGQtNDM3MC1iMjBkLTBlMDUxM2JlMzU1MCIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDo0MzoxNS4zNDNaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTIyVDIwOjQzOjE1LjM0M1oiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ.ROZjDlKySFnVB1Jjb0PLMGegR15NotQGe2UjYOc7lSTaQeP3iz8KLr1JQKfZiB_VJESzOBqUB15ut3YFwWMRAQ",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x44e6630e52b24859d50752636f43cb3067a0475e4da2d4067b652360e73b9524da41e3f78b3f0a2ebd4940a7d9881fd52444b3381a94075e6eb77605c1631101",
+      "merkleIndex": 365,
+      "revoked": false,
+      "createdAt": "2026-10-24T20:43:15.343Z",
+      "updatedAt": "2026-10-24T20:43:15.343Z"
+    },
+    {
+      "id": "urn:uuid:b314a81d-c447-4e6a-b45f-7b387c1ecc61",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-10-24T20:42:18.569Z",
+      "expirationDate": "2027-01-22T20:42:18.569Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOmIzMTRhODFkLWM0NDctNGU2YS1iNDVmLTdiMzg3YzFlY2M2MSIsIm5iZiI6MTc5Mjg3NDUzOCwiZXhwIjoxODAwNjUwNTM4LCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOmIzMTRhODFkLWM0NDctNGU2YS1iNDVmLTdiMzg3YzFlY2M2MSIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDo0MjoxOC41NjlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTIyVDIwOjQyOjE4LjU2OVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ.cpzoYmJhuoT0Kc44XYV4ma6cJuzygbCVWAiGYU9AGIfYSYlAxFM2pxXUja1itqII7fTmCdhJVG5koLVUDUKMAA",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x729ce8626261ba84f429ce385d857899ae9c26ecf281b095580886614f401887d8498940c45336a715d48dad62b6a208edf4e609d849546e64a0b5540d428c00",
+      "merkleIndex": 339,
+      "revoked": false,
+      "createdAt": "2026-10-24T20:42:18.569Z",
+      "updatedAt": "2026-10-24T20:42:18.569Z"
+    },
+    {
+      "id": "urn:uuid:afd98113-2cf5-42af-aca7-4963d6cf994f",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-10-24T20:41:49.829Z",
+      "expirationDate": "2027-01-22T20:41:49.829Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOmFmZDk4MTEzLTJjZjUtNDJhZi1hY2E3LTQ5NjNkNmNmOTk0ZiIsIm5iZiI6MTc5Mjg3NDUwOSwiZXhwIjoxODAwNjUwNTA5LCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOmFmZDk4MTEzLTJjZjUtNDJhZi1hY2E3LTQ5NjNkNmNmOTk0ZiIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDo0MTo0OS44MjlaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTIyVDIwOjQxOjQ5LjgyOVoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ._YCmroPmQJFOpJk5AEdaJ2bxAAEWNrN_pDhrg-pdulQ0yQ1_PcQaRIwjI4_iQ1uIXOQ_23FHaI7jwmeqU_h5DA",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0xfd80a6ae83e640914ea4993900475a2766f100011636b37fa4386b83ea5dba5434c90d7f3dc41a448c23238fe2435b885ce43fdb7147688ee3c267aa53f8790c",
+      "merkleIndex": 370,
+      "revoked": false,
+      "createdAt": "2026-10-24T20:41:49.829Z",
+      "updatedAt": "2026-10-24T20:41:49.829Z"
+    },
+    {
+      "id": "urn:uuid:aee3f53b-b9db-457a-b164-8f5b4be684e1",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-10-24T20:41:07.150Z",
+      "expirationDate": "2027-01-22T20:41:07.150Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOmFlZTNmNTNiLWI5ZGItNDU3YS1iMTY0LThmNWI0YmU2ODRlMSIsIm5iZiI6MTc5Mjg3NDQ2NywiZXhwIjoxODAwNjUwNDY3LCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOmFlZTNmNTNiLWI5ZGItNDU3YS1iMTY0LThmNWI0YmU2ODRlMSIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDo0MTowNy4xNTBaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI3LTAxLTIyVDIwOjQxOjA3LjE1MFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ.IcLYg7NkM_BAchMQPjNHTcGvKbNje3E6CT715FsqlKsuP0B1ndAfCO391uKsJYxfmPpa7k3ZNec3vVwFfypyAw",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x21c2d883b36433f0407213103e33474dc1af29b3637b713a093ef5e45b2a94ab2e3f40759dd01f08edfdd6e2ac258c5f98fa5aee4dd935e737bd5c057f2a7203",
+      "merkleIndex": 418,
+      "revoked": false,
+      "createdAt": "2026-10-24T20:41:07.150Z",
+      "updatedAt": "2026-10-24T20:41:07.150Z"
+    },
+    {
+      "id": "urn:uuid:cred-student-8812",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-01-22T08:00:00Z",
+      "expirationDate": "2028-01-22T08:00:00Z",
+      "status": "SIGNED",
+      "claims": {
+        "studentName": "Elena Rostova",
+        "studentId": "HP-2024-9104",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Graduate",
+        "graduationYear": 2027
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhlbGlvczpyZWc3ODkxMiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOmUzY2IxMDdiLTAzZDQtNDY2ZC05M2I2LTgzNTVjYWMwY2RmNyIsIm5iZiI6MTc5Mjg3NDM0OSwiZXhwIjoxODMyMTQwODAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjIvU3R1ZGVudFN0YXR1c0NyZWRlbnRpYWwuanNvbiJdLCJpZCI6InVybjp1dWlkOmUzY2IxMDdiLTAzZDQtNDY2ZC05M2I2LTgzNTVjYWMwY2RmNyIsInR5cGUiOlsiVmVyaWZpYWJsZUNyZWRlbnRpYWwiLCJTdHVkZW50U3RhdHVzQ3JlZGVudGlhbCJdLCJpc3N1ZXIiOnsiaWQiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpoZWxpb3M6cmVnNzg5MTIifSwiaXNzdWFuY2VEYXRlIjoiMjAyNi0xMC0yNFQyMDozOTowOS4yNzdaIiwiZXhwaXJhdGlvbkRhdGUiOiIyMDI4LTAxLTIyVDA4OjAwOjAwLjAwMFoiLCJjcmVkZW50aWFsU3ViamVjdCI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmhvbGRlcjplbGVuYTk5MzIxIiwic3R1ZGVudE5hbWUiOiJFbGVuYSBSb3N0b3ZhIiwic3R1ZGVudElkIjoiSFAtMjAyNC05MTA0IiwiZW5yb2xsbWVudFN0YXR1cyI6IkFDVElWRSIsImRlZ3JlZUxldmVsIjoiR3JhZHVhdGUiLCJncmFkdWF0aW9uWWVhciI6MjAyN319fQ.L3jQGXB4-zywFwpE6LnELPR-_TJkXuJH8yj1IDYoQe5EMX0kztjCMBNQPQK1b2Bkv3XHr3OPn-rxXv97MR37DQ",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x2f78d0197078fb3cb0170a44e8b9c42cf47efd32645ee247f328f520362841ee44317d24ced8c23013503d02b56f6064bf75c7af738f9feaf15eff7b311dfb0d",
+      "merkleIndex": 42,
+      "revoked": false,
+      "createdAt": "2026-01-22T08:00:00Z",
+      "updatedAt": "2026-01-22T08:00:00Z"
+    },
+    {
+      "id": "urn:uuid:cred-age-4401",
+      "schemaId": "schema_age_eligibility_v1",
+      "schemaName": "Age & Adult Eligibility",
+      "type": "AgeEligibilityCredential",
+      "issuerDid": "did:zeropass:testnet:civic:authority552",
+      "issuerName": "CivicKey Digital Authority (Testnet Issuer)",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "issuanceDate": "2026-01-12T10:00:00Z",
+      "expirationDate": "2029-01-12T10:00:00Z",
+      "status": "SIGNED",
+      "claims": {
+        "fullName": "Elena Rostova",
+        "age": 24,
+        "birthDate": "2002-04-18",
+        "jurisdiction": "US-CA"
+      },
+      "jwtVc": "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCIsImtpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmNpdmljOmF1dGhvcml0eTU1MiNrZXlzLTEifQ.eyJpc3MiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpjaXZpYzphdXRob3JpdHk1NTIiLCJzdWIiOiJkaWQ6emVyb3Bhc3M6dGVzdG5ldDpob2xkZXI6ZWxlbmE5OTMyMSIsImp0aSI6InVybjp1dWlkOjQ2ODMwM2M4LTUyODEtNDg0OS1hYzEyLWNiYjAxZTljNWRmNCIsIm5iZiI6MTc5Mjg3NDM0OSwiZXhwIjoxODYyOTA2NDAwLCJ2YyI6eyJAY29udGV4dCI6WyJodHRwczovL3d3dy53My5vcmcvMjAxOC9jcmVkZW50aWFscy92MSIsImh0dHBzOi8vc2NoZW1hLnplcm9wYXNzLm5ldHdvcmsvdjEvQWdlRWxpZ2liaWxpdHlDcmVkZW50aWFsLmpzb24iXSwiaWQiOiJ1cm46dXVpZDo0NjgzMDNjOC01MjgxLTQ4NDktYWMxMi1jYmIwMWU5YzVkZjQiLCJ0eXBlIjpbIlZlcmlmaWFibGVDcmVkZW50aWFsIiwiQWdlRWxpZ2liaWxpdHlDcmVkZW50aWFsIl0sImlzc3VlciI6eyJpZCI6ImRpZDp6ZXJvcGFzczp0ZXN0bmV0OmNpdmljOmF1dGhvcml0eTU1MiJ9LCJpc3N1YW5jZURhdGUiOiIyMDI2LTEwLTI0VDIwOjM5OjA5LjI4N1oiLCJleHBpcmF0aW9uRGF0ZSI6IjIwMjktMDEtMTJUMTA6MDA6MDAuMDAwWiIsImNyZWRlbnRpYWxTdWJqZWN0Ijp7ImlkIjoiZGlkOnplcm9wYXNzOnRlc3RuZXQ6aG9sZGVyOmVsZW5hOTkzMjEiLCJmdWxsTmFtZSI6IkVsZW5hIFJvc3RvdmEiLCJhZ2UiOjI0LCJiaXJ0aERhdGUiOiIyMDAyLTA0LTE4IiwianVyaXNkaWN0aW9uIjoiVVMtQ0EifX19.UdafdMrsEnFGou2nnE52yZaQ0lq6ZiP6w-HSt38b72oOWHCGNIAukL5158Zpdu6prZejogYLFh_Cwqg10XLxBg",
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x51d69f74caec127146a2eda79c4e76c99690d25aba6623fac3e1d2b77f1bef6a0e58708634802e90be75e7c66976eea9ad97a3a2060b161fc2c2a835d172f106",
+      "merkleIndex": 114,
+      "revoked": false,
+      "createdAt": "2026-01-12T10:00:00Z",
+      "updatedAt": "2026-01-12T10:00:00Z"
+    },
+    {
+      "id": "urn:uuid:cred-draft-1102",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:marcus2210",
+      "issuanceDate": "2026-03-01T10:00:00Z",
+      "expirationDate": "2027-03-01T10:00:00Z",
+      "status": "DRAFT",
+      "claims": {
+        "studentName": "Marcus Vance",
+        "studentId": "HP-2025-1011",
+        "enrollmentStatus": "ACTIVE",
+        "degreeLevel": "Undergraduate",
+        "graduationYear": 2029
+      },
+      "proofType": "Unsigned",
+      "proofValue": "",
+      "revoked": false,
+      "createdAt": "2026-03-01T10:00:00Z",
+      "updatedAt": "2026-03-01T10:00:00Z"
+    },
+    {
+      "id": "urn:uuid:cred-revoked-9901",
+      "schemaId": "schema_student_status_v2",
+      "schemaName": "Higher Education Student Status",
+      "type": "StudentStatusCredential",
+      "issuerDid": "did:zeropass:testnet:helios:reg78912",
+      "issuerName": "Helios Polytechnic Institute (Fictional Test Anchor)",
+      "holderDid": "did:zeropass:testnet:holder:tarik501",
+      "issuanceDate": "2025-09-01T08:00:00Z",
+      "expirationDate": "2027-09-01T08:00:00Z",
+      "status": "REVOKED",
+      "claims": {
+        "studentName": "Tarik Al-Mansoor",
+        "studentId": "HP-2023-4100",
+        "enrollmentStatus": "DISENROLLED"
+      },
+      "proofType": "Ed25519Signature2020",
+      "proofValue": "0x3344192804b719024f8d70142b918304910a28f73b192804c71829f034b71829",
+      "merkleIndex": 12,
+      "revoked": true,
+      "revokedAt": "2026-02-14T16:22:00Z",
+      "revocationReason": "Subject withdrew from academic degree program on 2026-02-14",
+      "createdAt": "2025-09-01T08:00:00Z",
+      "updatedAt": "2026-02-14T16:22:00Z"
+    }
+  ],
+  "policies": [
+    {
+      "id": "policy_adult_18_zk",
+      "title": "Adult Access Verification (18+)",
+      "description": "Requires zero-knowledge proof that subject age >= 18 and jurisdiction is verified, without revealing date of birth.",
+      "credentialType": "AgeEligibilityCredential",
+      "schemaId": "schema_age_eligibility_v1",
+      "allowedIssuers": [
+        "did:zeropass:testnet:civic:authority552"
+      ],
+      "predicates": [
+        {
+          "attributeKey": "age",
+          "attributeLabel": "Age Requirement",
+          "operator": "gte",
+          "value": 18,
+          "isZeroKnowledge": true
+        }
+      ],
+      "disclosedClaims": [
+        {
+          "attributeKey": "jurisdiction",
+          "attributeLabel": "Jurisdiction Code",
+          "required": true,
+          "selectiveDisclosureAllowed": true
+        }
+      ],
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "createdAt": "2026-02-01T10:00:00Z"
+    },
+    {
+      "id": "policy_active_student_discount",
+      "title": "Student Discount & Transit Card",
+      "description": "Verifies active enrollment status and graduation year without disclosing student ID, GPA, or transcript.",
+      "credentialType": "StudentStatusCredential",
+      "schemaId": "schema_student_status_v2",
+      "predicates": [
+        {
+          "attributeKey": "enrollmentStatus",
+          "attributeLabel": "Enrollment Status",
+          "operator": "eq",
+          "value": "ACTIVE",
+          "isZeroKnowledge": false
+        },
+        {
+          "attributeKey": "graduationYear",
+          "attributeLabel": "Active Student Year",
+          "operator": "gte",
+          "value": 2026,
+          "isZeroKnowledge": true
+        }
+      ],
+      "disclosedClaims": [
+        {
+          "attributeKey": "studentName",
+          "attributeLabel": "Student Name",
+          "required": true,
+          "selectiveDisclosureAllowed": false
+        },
+        {
+          "attributeKey": "degreeLevel",
+          "attributeLabel": "Degree Level",
+          "required": false,
+          "selectiveDisclosureAllowed": true
+        }
+      ],
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "createdAt": "2026-02-10T11:30:00Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sess_mvmvdcse_10f63aeb",
+      "policyId": "policy_active_student_discount",
+      "status": "FAILED",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Authorized Verifier",
+      "qrPayload": "zeropass://verify?session=sess_mvmvdcse_10f63aeb&policy=policy_active_student_discount",
+      "expiresAt": "2026-10-24T21:16:49.598Z",
+      "createdAt": "2026-10-24T20:46:49.598Z",
+      "result": {
+        "isValid": false,
+        "failureReason": "CREDENTIAL_REVOKED",
+        "errorMessage": "Credential was revoked by issuer: Subject withdrew from academic degree program on 2026-02-14",
+        "verifiedAt": "2026-10-24T20:46:49.603Z",
+        "checks": [
+          {
+            "step": "Cryptographic Signature",
+            "description": "Verify digital signature using issuer public key & Ed25519/BLS12-381 curve",
+            "passed": true,
+            "details": "Verified via Ed25519Signature2020"
+          },
+          {
+            "step": "Expiration Check",
+            "description": "Validate credential validity interval against reference consensus timestamp",
+            "passed": true,
+            "details": "Valid until 2027-09-01T08:00:00Z"
+          },
+          {
+            "step": "Revocation Registry Check",
+            "description": "Query cryptographic accumulator / non-revocation status in registry",
+            "passed": false,
+            "details": "Revoked on registry: Subject withdrew from academic degree program on 2026-02-14"
+          }
+        ],
+        "disclosedClaims": {},
+        "satisfiedPredicates": [],
+        "issuerDid": "did:zeropass:testnet:helios:reg78912",
+        "holderDid": "did:zeropass:testnet:holder:tarik501"
+      }
+    },
+    {
+      "id": "sess_mvmv8rlf_1ed59a25",
+      "policyId": "policy_active_student_discount",
+      "status": "FAILED",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Authorized Verifier",
+      "qrPayload": "zeropass://verify?session=sess_mvmv8rlf_1ed59a25&policy=policy_active_student_discount",
+      "expiresAt": "2026-10-24T21:13:15.507Z",
+      "createdAt": "2026-10-24T20:43:15.507Z",
+      "result": {
+        "isValid": false,
+        "failureReason": "CREDENTIAL_REVOKED",
+        "errorMessage": "Credential was revoked by issuer: Subject withdrew from academic degree program on 2026-02-14",
+        "verifiedAt": "2026-10-24T20:43:15.511Z",
+        "checks": [
+          {
+            "step": "Cryptographic Signature",
+            "description": "Verify digital signature using issuer public key & Ed25519/BLS12-381 curve",
+            "passed": true,
+            "details": "Verified via Ed25519Signature2020"
+          },
+          {
+            "step": "Expiration Check",
+            "description": "Validate credential validity interval against reference consensus timestamp",
+            "passed": true,
+            "details": "Valid until 2027-09-01T08:00:00Z"
+          },
+          {
+            "step": "Revocation Registry Check",
+            "description": "Query cryptographic accumulator / non-revocation status in registry",
+            "passed": false,
+            "details": "Revoked on registry: Subject withdrew from academic degree program on 2026-02-14"
+          }
+        ],
+        "disclosedClaims": {},
+        "satisfiedPredicates": [],
+        "issuerDid": "did:zeropass:testnet:helios:reg78912",
+        "holderDid": "did:zeropass:testnet:holder:tarik501"
+      }
+    },
+    {
+      "id": "sess_mvmv7js5_8d0a4308",
+      "policyId": "policy_active_student_discount",
+      "status": "FAILED",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Authorized Verifier",
+      "qrPayload": "zeropass://verify?session=sess_mvmv7js5_8d0a4308&policy=policy_active_student_discount",
+      "expiresAt": "2026-10-24T21:12:18.725Z",
+      "createdAt": "2026-10-24T20:42:18.725Z",
+      "result": {
+        "isValid": false,
+        "failureReason": "CREDENTIAL_REVOKED",
+        "errorMessage": "Credential was revoked by issuer: Subject withdrew from academic degree program on 2026-02-14",
+        "verifiedAt": "2026-10-24T20:42:18.729Z",
+        "checks": [
+          {
+            "step": "Cryptographic Signature",
+            "description": "Verify digital signature using issuer public key & Ed25519/BLS12-381 curve",
+            "passed": true,
+            "details": "Verified via Ed25519Signature2020"
+          },
+          {
+            "step": "Expiration Check",
+            "description": "Validate credential validity interval against reference consensus timestamp",
+            "passed": true,
+            "details": "Valid until 2027-09-01T08:00:00Z"
+          },
+          {
+            "step": "Revocation Registry Check",
+            "description": "Query cryptographic accumulator / non-revocation status in registry",
+            "passed": false,
+            "details": "Revoked on registry: Subject withdrew from academic degree program on 2026-02-14"
+          }
+        ],
+        "disclosedClaims": {},
+        "satisfiedPredicates": [],
+        "issuerDid": "did:zeropass:testnet:helios:reg78912",
+        "holderDid": "did:zeropass:testnet:holder:tarik501"
+      }
+    },
+    {
+      "id": "sess_mvmv6xlr_06119893",
+      "policyId": "policy_active_student_discount",
+      "status": "FAILED",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Authorized Verifier",
+      "qrPayload": "zeropass://verify?session=sess_mvmv6xlr_06119893&policy=policy_active_student_discount",
+      "expiresAt": "2026-10-24T21:11:49.983Z",
+      "createdAt": "2026-10-24T20:41:49.983Z",
+      "result": {
+        "isValid": false,
+        "failureReason": "CREDENTIAL_REVOKED",
+        "errorMessage": "Credential was revoked by issuer: Subject withdrew from academic degree program on 2026-02-14",
+        "verifiedAt": "2026-10-24T20:41:49.988Z",
+        "checks": [
+          {
+            "step": "Cryptographic Signature",
+            "description": "Verify digital signature using issuer public key & Ed25519/BLS12-381 curve",
+            "passed": true,
+            "details": "Verified via Ed25519Signature2020"
+          },
+          {
+            "step": "Expiration Check",
+            "description": "Validate credential validity interval against reference consensus timestamp",
+            "passed": true,
+            "details": "Valid until 2027-09-01T08:00:00Z"
+          },
+          {
+            "step": "Revocation Registry Check",
+            "description": "Query cryptographic accumulator / non-revocation status in registry",
+            "passed": false,
+            "details": "Revoked on registry: Subject withdrew from academic degree program on 2026-02-14"
+          }
+        ],
+        "disclosedClaims": {},
+        "satisfiedPredicates": [],
+        "issuerDid": "did:zeropass:testnet:helios:reg78912",
+        "holderDid": "did:zeropass:testnet:holder:tarik501"
+      }
+    },
+    {
+      "id": "sess_mvmv60oa_6ca75abe",
+      "policyId": "policy_active_student_discount",
+      "status": "FAILED",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Authorized Verifier",
+      "qrPayload": "zeropass://verify?session=sess_mvmv60oa_6ca75abe&policy=policy_active_student_discount",
+      "expiresAt": "2026-10-24T21:11:07.306Z",
+      "createdAt": "2026-10-24T20:41:07.306Z",
+      "result": {
+        "isValid": false,
+        "failureReason": "CREDENTIAL_REVOKED",
+        "errorMessage": "Credential was revoked by issuer: Subject withdrew from academic degree program on 2026-02-14",
+        "verifiedAt": "2026-10-24T20:41:07.310Z",
+        "checks": [
+          {
+            "step": "Cryptographic Signature",
+            "description": "Verify digital signature using issuer public key & Ed25519/BLS12-381 curve",
+            "passed": true,
+            "details": "Verified via Ed25519Signature2020"
+          },
+          {
+            "step": "Expiration Check",
+            "description": "Validate credential validity interval against reference consensus timestamp",
+            "passed": true,
+            "details": "Valid until 2027-09-01T08:00:00Z"
+          },
+          {
+            "step": "Revocation Registry Check",
+            "description": "Query cryptographic accumulator / non-revocation status in registry",
+            "passed": false,
+            "details": "Revoked on registry: Subject withdrew from academic degree program on 2026-02-14"
+          }
+        ],
+        "disclosedClaims": {},
+        "satisfiedPredicates": [],
+        "issuerDid": "did:zeropass:testnet:helios:reg78912",
+        "holderDid": "did:zeropass:testnet:holder:tarik501"
+      }
+    },
+    {
+      "id": "sess_live_init_9921",
+      "policyId": "policy_adult_18_zk",
+      "status": "PENDING",
+      "verifierDid": "did:zeropass:testnet:verifier:meridian441",
+      "verifierName": "Meridian Capital Compliance (Sandbox Verifier)",
+      "qrPayload": "zeropass://verify?session=sess_live_init_9921&policy=policy_adult_18_zk",
+      "expiresAt": "2026-10-24T21:39:09.287Z",
+      "createdAt": "2026-10-24T20:39:09.287Z"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "pres_001",
+      "timestamp": "2026-03-02T16:20:00Z",
+      "verifierName": "City Transit Authority",
+      "verifierDid": "did:zeropass:testnet:verifier:transit99",
+      "holderDid": "did:zeropass:testnet:holder:elena99321",
+      "credentialId": "urn:uuid:cred-student-8812",
+      "credentialTitle": "Higher Education Student Status",
+      "claimsDisclosed": [
+        "studentName",
+        "degreeLevel"
+      ],
+      "predicatesProved": [
+        "enrollmentStatus == ACTIVE",
+        "graduationYear >= 2026 (ZK)"
+      ],
+      "status": "APPROVED",
+      "createdAt": "2026-03-02T16:20:00Z"
+    }
+  ],
+  "apiKeys": [
+    {
+      "id": "key_live_01",
+      "name": "Production Verifier Microservice",
+      "keyPrefix": "zp_live_948a",
+      "keyHash": "$2b$10$.i05Vj8KrSIHJmTet4GUyOn1LjYU9I3goNk34/2y.v6C1G.YZjkvq",
+      "scopes": [
+        "verification:verify",
+        "credentials:read"
+      ],
+      "status": "ACTIVE",
+      "lastUsedAt": "2026-03-03T18:22:00Z",
+      "createdAt": "2026-01-20T10:00:00Z"
+    }
+  ],
+  "webhooks": [
+    {
+      "id": "wh_01",
+      "url": "https://api.meridian-audit.corp.test/webhooks/zeropass",
+      "description": "Audit service notifications for completed proof presentations",
+      "events": [
+        "proof.verified",
+        "proof.failed"
+      ],
+      "secretToken": "whsec_8849b2c890124f8d70142b91830491",
+      "isActive": true,
+      "lastDeliveryStatus": "success",
+      "lastDeliveryAt": "2026-03-03T18:22:04Z",
+      "createdAt": "2026-02-05T12:00:00Z"
+    }
+  ],
+  "logs": [
+    {
+      "id": "log_mvmvdcsk",
+      "timestamp": "2026-10-24T20:46:49.604Z",
+      "requestId": "sess_mvmvdcse_10f63aeb",
+      "verifierName": "Authorized Verifier",
+      "credentialType": "StudentStatusCredential",
+      "result": "FAILED",
+      "failureReason": "CREDENTIAL_REVOKED",
+      "latencyMs": 1,
+      "ipAddress": "127.0.0.1"
+    },
+    {
+      "id": "log_mvmv8rlk",
+      "timestamp": "2026-10-24T20:43:15.512Z",
+      "requestId": "sess_mvmv8rlf_1ed59a25",
+      "verifierName": "Authorized Verifier",
+      "credentialType": "StudentStatusCredential",
+      "result": "FAILED",
+      "failureReason": "CREDENTIAL_REVOKED",
+      "latencyMs": 2,
+      "ipAddress": "127.0.0.1"
+    },
+    {
+      "id": "log_mvmv7js9",
+      "timestamp": "2026-10-24T20:42:18.729Z",
+      "requestId": "sess_mvmv7js5_8d0a4308",
+      "verifierName": "Authorized Verifier",
+      "credentialType": "StudentStatusCredential",
+      "result": "FAILED",
+      "failureReason": "CREDENTIAL_REVOKED",
+      "latencyMs": 1,
+      "ipAddress": "127.0.0.1"
+    },
+    {
+      "id": "log_mvmv6xlw",
+      "timestamp": "2026-10-24T20:41:49.988Z",
+      "requestId": "sess_mvmv6xlr_06119893",
+      "verifierName": "Authorized Verifier",
+      "credentialType": "StudentStatusCredential",
+      "result": "FAILED",
+      "failureReason": "CREDENTIAL_REVOKED",
+      "latencyMs": 1,
+      "ipAddress": "127.0.0.1"
+    },
+    {
+      "id": "log_mvmv60oe",
+      "timestamp": "2026-10-24T20:41:07.310Z",
+      "requestId": "sess_mvmv60oa_6ca75abe",
+      "verifierName": "Authorized Verifier",
+      "credentialType": "StudentStatusCredential",
+      "result": "FAILED",
+      "failureReason": "CREDENTIAL_REVOKED",
+      "latencyMs": 1,
+      "ipAddress": "127.0.0.1"
+    },
+    {
+      "id": "log_01",
+      "timestamp": "2026-03-03T18:22:04Z",
+      "requestId": "req_v8892_10",
+      "verifierName": "Meridian Capital Compliance",
+      "credentialType": "AgeEligibilityCredential",
+      "result": "SUCCESS",
+      "latencyMs": 142,
+      "ipAddress": "198.51.100.42"
+    }
+  ]
+}
